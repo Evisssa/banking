@@ -22,7 +22,7 @@ import java.util.List;
 @Entity
 @Table(name = "_user")
 @EntityListeners(AuditingEntityListener.class)
-public class User extends AbstractEntity {
+public class User extends AbstractEntity{
 
 
     private  String firstName;
@@ -40,11 +40,11 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Contact> contacts;
     //address of type Address
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne
     private Address address;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne
     private Account account;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne
     private Role role;
 
 

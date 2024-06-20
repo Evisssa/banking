@@ -23,11 +23,9 @@ public class Account extends AbstractEntity{
 
 
     private String iban;
-    @CreatedDate
-    @Column(nullable = false,updatable = false)
-    private LocalDateTime createdDate;
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime lastUpdatedDate;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

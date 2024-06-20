@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @SuperBuilder
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Role {
+public class Role extends AbstractEntity{
 
 
     private String name;
