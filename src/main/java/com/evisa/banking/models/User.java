@@ -27,10 +27,10 @@ public class User extends AbstractEntity{
 
     private  String firstName;
     private  String lastName;
-    private LocalDate birthDate;
     @Column(unique = true)
     private String email;
     private String password;
+    private LocalDate birthDate;
     private Boolean isActive;
 
 

@@ -17,9 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public class Address extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+
     private String street;
     private Integer zipCode;
     private Integer houseNumber;
