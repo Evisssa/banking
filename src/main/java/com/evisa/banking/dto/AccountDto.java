@@ -6,13 +6,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class AccountDto {
+public class AccountDto implements Serializable {
 
     private Integer id;
     private String iban;

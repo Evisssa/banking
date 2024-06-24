@@ -2,8 +2,12 @@ package com.evisa.banking.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -25,9 +29,9 @@ import java.util.List;
 public class User extends AbstractEntity{
 
 
+
     private  String firstName;
     private  String lastName;
-    @Column(unique = true)
     private String email;
     private String password;
     private LocalDate birthDate;

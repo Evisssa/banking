@@ -4,7 +4,10 @@ import com.evisa.banking.models.Role;
 import com.evisa.banking.models.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.*;
 import lombok.*;
+
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -12,15 +15,29 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserDto {
+public class UserDto implements Serializable {
 
     private Integer id;
+    @NotNull(message = "First name is mandatory")
+    @NotEmpty(message = "First name is mandatory")
+    @NotBlank(message = "First name is mandatory")
     private  String firstName;
+    @NotNull(message = "Last name is mandatory")
+    @NotEmpty(message = "Last name is mandatory")
+    @NotBlank(message = "Last name is mandatory")
     private  String lastName;
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    @Email
     private String email;
+
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    @Size(min = 8, max = 20)
     private String password;
 
-    private Role role;
 
     public static UserDto fromEntity(User user){
         return UserDto.builder()
@@ -29,7 +46,6 @@ public class UserDto {
                 .lastName(user.getLastName())
                 .email(user.getEmail())
                 .password(user.getPassword())
-                .role(user.getRole())
                 .build();
     }
 
@@ -40,7 +56,6 @@ public class UserDto {
                 .lastName(userDto.getLastName())
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
-                .role(userDto.getRole())
                 .build();
     }
 }

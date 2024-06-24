@@ -4,13 +4,15 @@ import com.evisa.banking.models.Address;
 import com.evisa.banking.models.User;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class AddressDto {
+public class AddressDto implements Serializable {
     private Integer id;
     private String street;
     private Integer zipCode;

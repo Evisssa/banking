@@ -4,13 +4,15 @@ import com.evisa.banking.models.Contact;
 import com.evisa.banking.models.User;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ContactDto {
+public class ContactDto implements Serializable {
 
     private Integer id;
     private  String firstName;

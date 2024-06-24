@@ -5,8 +5,12 @@ import com.evisa.banking.models.TransactionType;
 import com.evisa.banking.models.User;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Getter
@@ -15,8 +19,11 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class TransactionDto {
+public class TransactionDto implements Serializable {
     private Integer id;
+    @Positive
+    @Max(value = 100000000)
+    @Min(value= 10)
     private BigDecimal amount;
     private TransactionType type;
     private String destinationIban;
