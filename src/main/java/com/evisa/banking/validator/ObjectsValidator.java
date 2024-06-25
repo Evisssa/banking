@@ -10,8 +10,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.evisa.banking.exceptions.ObjectsValidationException;
+import org.springframework.stereotype.Component;
+
 import static java.util.Arrays.stream;
 
+@Component
 public class ObjectsValidator<T extends Serializable> {
 
 
