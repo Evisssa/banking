@@ -1,8 +1,11 @@
 package com.evisa.banking.services.impl;
 
+import com.evisa.banking.dto.AccountDto;
 import com.evisa.banking.dto.UserDto;
 import com.evisa.banking.models.User;
+import com.evisa.banking.repositories.AccountRepository;
 import com.evisa.banking.repositories.UserRepository;
+import com.evisa.banking.services.AccountService;
 import com.evisa.banking.services.UserService;
 import com.evisa.banking.validator.ObjectsValidator;
 import jakarta.persistence.EntityNotFoundException;
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
+    private final AccountService accountService;
     private final ObjectsValidator<UserDto> validator;
     @Override
     public Integer save(UserDto dto) {
@@ -58,7 +62,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer validateAccount(Integer id) {
-        return null;
+        //First find the user entity
+        User user = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No user found for user account validation : "+id));
+        //
+
+        //Lets make the user active
+        user.setIsActive(true);
+        // Then create a bank account for the user
+        AccountDto accountDto = AccountDto.builder()
+                .user( UserDto.fromEntity(user))
+                .build();
+
+        // then save via the account repository
+        accountService.save(accountDto);
+        repository.save(user);
+        return user.getId();
     }
 
     @Override

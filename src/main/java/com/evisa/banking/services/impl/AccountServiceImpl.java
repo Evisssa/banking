@@ -24,6 +24,7 @@ public class AccountServiceImpl implements AccountService {
     private final ObjectsValidator<AccountDto> validator;
     @Override
     public Integer save(AccountDto dto) {
+       /*
         if(dto.getId() != null)
         {
             throw new OperationNonPermitedExample(
@@ -32,10 +33,20 @@ public class AccountServiceImpl implements AccountService {
                     "Account",
                     "Update not permited!"
             );
-        }
+        } */
 
         validator.validate(dto); // first validation
         Account account = AccountDto.toEntity(dto); // then transform the user dto to the user entity
+        boolean userHasAlreadyAnAccount = repository.findByUserId(account.getUser().getId()).isPresent();
+        if(userHasAlreadyAnAccount)
+        {
+            throw new OperationNonPermitedExample(
+                    "User can not have more than one account!",
+                    "Creae account",
+                    "Account Service",
+                    "Account creation"
+            );
+        }
         account.setIban(generateRandomIban());
         return repository.save(account).getId(); // then save the user and return the id of the user
     }
@@ -71,9 +82,6 @@ public class AccountServiceImpl implements AccountService {
 
     private String generateRandomIban(){
         String iban = Iban.random(CountryCode.AL).toFormattedString();
-
-        //Check if Iban Exists
-
         Boolean ibanExists =  repository.findByIban(iban).isPresent();
 
         if(ibanExists){

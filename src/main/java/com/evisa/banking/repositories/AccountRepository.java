@@ -9,4 +9,5 @@ public interface AccountRepository extends JpaRepository<Account, Integer>{
 
     // find by iban
    Optional<Account> findByIban(String iban);
+   Optional<Account>  findByUserId(Integer id);
 }
