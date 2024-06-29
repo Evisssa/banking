@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
 
-    public final ContactRepository repository;
-    public final ObjectsValidator<ContactDto> validator;
+    private final ContactRepository repository;
+    private final ObjectsValidator<ContactDto> validator;
 
     @Override
     public Integer save(ContactDto dto) {

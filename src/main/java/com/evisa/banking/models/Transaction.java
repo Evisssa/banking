@@ -32,7 +32,6 @@ public class Transaction extends AbstractEntity{
     private String destinationIban;
 
 
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
