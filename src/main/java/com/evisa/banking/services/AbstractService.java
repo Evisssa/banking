@@ -6,7 +6,7 @@ public interface AbstractService<T> {
 
     Integer save(T dto);
     List<T> findall();
-    T findById(Integer Id);
-    void delete(Integer Id);
+    T findById(Integer id);
+    void delete(Integer id);
 
 }

@@ -49,11 +49,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDto findById(Integer Id) {
-        return repository.findById(Id)
+    public AccountDto findById(Integer id) {
+        return repository.findById(id)
                 .stream()
                 .map(AccountDto::fromEntity)
-                .findAny().orElseThrow(() -> new EntityNotFoundException("No account entity found with the provided ID "+Id));
+                .findAny().orElseThrow(() -> new EntityNotFoundException("No account entity found with the provided ID "+id));
         // .collect(Collectors.);
     }
 
