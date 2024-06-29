@@ -36,23 +36,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findById(Integer Id) {
-       return repository.findById(Id)
+    public UserDto findById(Integer id) {
+       return repository.findById(id)
                .stream()
                .map(UserDto::fromEntity)
-               .findAny().orElseThrow(() -> new EntityNotFoundException("No user entity found with the provided ID "+Id));
+               .findAny().orElseThrow(() -> new EntityNotFoundException("No user entity found with the provided ID : "+id));
               // .collect(Collectors.);
     }
 
     @Override
-    public void delete(Integer Id) {
+    public void delete(Integer id) {
         //validator.validate(dto);
-        UserDto userDto = repository.findById(Id)
+        UserDto userDto = repository.findById(id)
                 .stream()
                 .map(UserDto::fromEntity)
-                .findAny().orElseThrow(() -> new EntityNotFoundException("No user entity found with the provided ID "+Id));
+                .findAny().orElseThrow(() -> new EntityNotFoundException("No user entity found with the provided ID : "+id));
         validator.validate(userDto);
-        repository.deleteById(Id);
+        repository.deleteById(id);
 
+    }
+
+    @Override
+    public Integer validateAccount(Integer id) {
+        return null;
+    }
+
+    @Override
+    public Integer invalidateAccount(Integer id) {
+        return null;
     }
 }

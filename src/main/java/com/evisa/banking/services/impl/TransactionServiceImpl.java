@@ -50,14 +50,14 @@ public class TransactionServiceImpl implements TransactionService {
     public TransactionDto findById(Integer id) {
         return repository.findById(id)
                 .map(TransactionDto::fromEntity)
-                . orElseThrow(() -> new EntityNotFoundException(" The transaction with ID : "+ id+ "was not found"));
+                . orElseThrow(() -> new EntityNotFoundException("No Transaction entity found with the provided ID : "+id));
     }
 
     @Override
     public void delete(Integer id) {
         TransactionDto transactionDto = repository.findById(id)
                 .map(TransactionDto::fromEntity)
-                . orElseThrow(() -> new EntityNotFoundException(" The transaction with ID : "+ id+ "was not found"));
+                . orElseThrow(() -> new EntityNotFoundException("No transaction entity found with the provided ID : "+id));
         validator.validate(transactionDto);
         repository.deleteById(id);
 

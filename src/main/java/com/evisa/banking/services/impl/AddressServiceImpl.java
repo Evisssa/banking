@@ -47,7 +47,7 @@ public class AddressServiceImpl implements AddressService {
         return repository.findById(id)
                 .stream()
                 .map(AddressDto::fromEntity)
-                .findAny().orElseThrow(() ->  new EntityNotFoundException("The address with id : "+id+" was not found!"));
+                .findAny().orElseThrow(() ->  new EntityNotFoundException("No Address entity found with the provided ID : "+id));
 
     }
 
@@ -60,7 +60,7 @@ public class AddressServiceImpl implements AddressService {
         repository.findById(id)
                 .stream()
                 .map(AddressDto::fromEntity)
-                .findAny().orElseThrow(() ->  new EntityNotFoundException("The address with id : "+id+" was not found!"));
+                .findAny().orElseThrow(() ->  new EntityNotFoundException("No Address entity found with the provided ID : "+id));
 
 
 

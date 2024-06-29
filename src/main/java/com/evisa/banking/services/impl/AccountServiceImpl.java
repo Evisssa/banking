@@ -53,19 +53,19 @@ public class AccountServiceImpl implements AccountService {
         return repository.findById(id)
                 .stream()
                 .map(AccountDto::fromEntity)
-                .findAny().orElseThrow(() -> new EntityNotFoundException("No account entity found with the provided ID "+id));
+                .findAny().orElseThrow(() -> new EntityNotFoundException("No Account entity found with the provided ID : "+id));
         // .collect(Collectors.);
     }
 
     @Override
-    public void delete(Integer Id) {
+    public void delete(Integer id) {
 
-        AccountDto accountDto = repository.findById(Id)
+        AccountDto accountDto = repository.findById(id)
                 .stream()
                 .map(AccountDto::fromEntity)
-                .findAny().orElseThrow(() -> new EntityNotFoundException("No user entity found with the provided ID "+Id));
+                .findAny().orElseThrow(() -> new EntityNotFoundException("No Account entity found with the provided ID "+id));
         validator.validate(accountDto);
-        repository.deleteById(Id);
+        repository.deleteById(id);
 
     }
 

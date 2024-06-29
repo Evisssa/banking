@@ -46,7 +46,7 @@ public class ContactServiceImpl implements ContactService {
         return repository.findById(id)
                 .stream()
                 .map(ContactDto::fromEntity)
-                .findAny().orElseThrow(() -> new EntityNotFoundException("The Contact with id : "+id+" was not found!"));
+                .findAny().orElseThrow(() -> new EntityNotFoundException("No Contact entity found with the provided ID : "+id));
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ContactServiceImpl implements ContactService {
         ContactDto contactDto =  repository.findById(id)
                 .stream()
                 .map(ContactDto::fromEntity)
-                .findAny().orElseThrow(() -> new EntityNotFoundException("The Contact with id : "+id+" was not found!"));
+                .findAny().orElseThrow(() -> new EntityNotFoundException("No Contact entity found with the provided ID : "+id));
         validator.validate(contactDto);
         repository.deleteById(id);
     }
