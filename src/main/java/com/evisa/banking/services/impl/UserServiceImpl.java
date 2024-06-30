@@ -88,5 +88,7 @@ public class UserServiceImpl implements UserService {
 
         //Lets make the user active
         user.setIsActive(false);
+
+        return user.getId();
     }
 }

@@ -1,6 +1,7 @@
 package com.evisa.banking.services.impl;
 
 import com.evisa.banking.dto.ContactDto;
+import com.evisa.banking.dto.TransactionDto;
 import com.evisa.banking.models.Contact;
 import com.evisa.banking.models.User;
 import com.evisa.banking.repositories.ContactRepository;
@@ -57,5 +58,13 @@ public class ContactServiceImpl implements ContactService {
                 .findAny().orElseThrow(() -> new EntityNotFoundException("No Contact entity found with the provided ID : "+id));
         validator.validate(contactDto);
         repository.deleteById(id);
+    }
+
+    @Override
+    public List<ContactDto> findAllByUserId(Integer userId) {
+        return repository.findAllByUserId(userId)
+                .stream()
+                .map(ContactDto::fromEntity)
+                .collect(Collectors.toList());
     }
 }
