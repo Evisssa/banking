@@ -1,1 +1,2 @@
-The backend in Spring for the banking application
+The backend in Spring for a banking application.
+Work in progress ...
